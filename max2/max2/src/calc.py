@@ -1,4 +1,4 @@
-# Apr-03-2025
+# Apr-05-2025
 # calc.py
 
 import cv2 as cv
@@ -69,7 +69,10 @@ def calc(image: ndarray, templ: ndarray) -> float:
             mat_rotate = cv.getRotationMatrix2D(cfg.center, angle, scale)
 
             image_magn_roi_warp \
-                = cv.warpAffine(image_magn_roi, mat_rotate, cfg.dsize_roi)
+                = cv.warpAffine(image_magn_roi,
+                                mat_rotate,
+                                cfg.dsize_roi,
+                                borderMode=cv.BORDER_TRANSPARENT)
 
             if cfg.debug_mode:
                 distance_current, difference_map_current \

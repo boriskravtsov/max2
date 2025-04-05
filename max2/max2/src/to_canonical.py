@@ -1,4 +1,4 @@
-# Apr-03-2025
+# Apr-05-2025
 # to_canonical.py
 
 import cv2 as cv
@@ -14,7 +14,7 @@ def to_canonical(image_in: ndarray) -> ndarray:
     height = cfg.canonical_size
 
     # dim = (width, height)
-    image_resize = cv.resize(image_in, (width, height), cv.INTER_LANCZOS4)
+    image_resize = cv.resize(image_in,(width, height), cv.INTER_LANCZOS4)
 
     threshold, image_thr \
         = cv.threshold(image_resize, 0, 255,
@@ -26,6 +26,7 @@ def to_canonical(image_in: ndarray) -> ndarray:
         = cv.threshold(image_correlation, 0, 255,
                        cv.THRESH_BINARY + cv.THRESH_OTSU)
 
+    # remove edges
     image_out[0, :] = 0
     image_out[height - 1, :] = 0
     image_out[:, 0] = 0
